@@ -4272,7 +4272,7 @@ public class Campaign implements ITechManager {
             int minutes = Math.min(tech.getMinutesLeft(), unit.getMothballTime());
 
             // check astech time
-            if (!unit.isSelfCrewed() && astechPoolMinutes < minutes * 6) {
+            if (!unit.isSelfCrewed() && astechPoolMinutes < minutes * MHQConstants.ASTECH_TEAM_SIZE) {
                 // uh-oh
                 addReport(String.format(resources.getString("notEnoughAstechTime.mothballing"),
                       unit.getHyperlinkedName()));
@@ -4283,7 +4283,7 @@ public class Campaign implements ITechManager {
 
             tech.setMinutesLeft(tech.getMinutesLeft() - minutes);
             if (!unit.isSelfCrewed()) {
-                astechPoolMinutes -= 6 * minutes;
+                astechPoolMinutes -= MHQConstants.ASTECH_TEAM_SIZE * minutes;
             }
 
             report = String.format(resources.getString("timeSpent.mothballing.tech"),
@@ -4357,7 +4357,7 @@ public class Campaign implements ITechManager {
             int minutes = Math.min(tech.getMinutesLeft(), unit.getMothballTime());
 
             // check astech time
-            if (!unit.isSelfCrewed() && astechPoolMinutes < minutes * 6) {
+            if (!unit.isSelfCrewed() && astechPoolMinutes < minutes * MHQConstants.ASTECH_TEAM_SIZE) {
                 // uh-oh
                 addReport(String.format(resources.getString("notEnoughAstechTime.activation"),
                       unit.getHyperlinkedName()));
@@ -4368,7 +4368,7 @@ public class Campaign implements ITechManager {
 
             tech.setMinutesLeft(tech.getMinutesLeft() - minutes);
             if (!unit.isSelfCrewed()) {
-                astechPoolMinutes -= 6 * minutes;
+                astechPoolMinutes -= MHQConstants.ASTECH_TEAM_SIZE * minutes;
             }
 
             report = String.format(resources.getString("timeSpent.activation.tech"),
